@@ -1,0 +1,141 @@
+<!-- core/templates/core/send_model.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send a New Model</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        .hint-box-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hint-button {
+            font-size: 1.1em;
+            color: #4CAF50;
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        
+        .hint-box {
+            display: none;
+            position: absolute;
+            background: #fff;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            z-index: 10;
+            top: 100%;
+            left: 0;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+        
+        .hint-box::after {
+            content: '';
+            position: absolute;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #fff transparent transparent transparent;
+            top: -10px;
+            left: 10px;
+        }
+        
+        .hint-box-container:hover .hint-box {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Send a New Model</h1>
+        <form method="post" enctype="multipart/form-data" class="form-container">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.model_name.label_tag }}
+                <div class="hint-box-container">
+                    {{ form.model_name }}
+                    <button type="button" class="hint-button">?</button>
+                    <div class="hint-box">Enter a descriptive name for your 3D model.</div>
+                </div>
+                {% if form.model_name.errors %}
+                    <div class="error">{{ form.model_name.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.stl_file.label_tag }}
+                <div class="hint-box-container">
+                    {{ form.stl_file }}
+                    <button type="button" class="hint-button">?</button>
+                    <div class="hint-box">Upload the STL file for the 3D model you want to print.</div>
+                </div>
+                {% if form.stl_file.errors %}
+                    <div class="error">{{ form.stl_file.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.material.label_tag }}
+                <div class="hint-box-container">
+                    {{ form.material }}
+                    <button type="button" class="hint-button">?</button>
+                    <div class="hint-box">Select the type of filament material used for printing (e.g., ABS, PLA).</div>
+                </div>
+                {% if form.material.errors %}
+                    <div class="error">{{ form.material.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.infill_percentage.label_tag }}
+                <div class="hint-box-container">
+                    {{ form.infill_percentage }}
+                    <button type="button" class="hint-button">?</button>
+                    <div class="hint-box">Specify the infill percentage (0-100%) which determines the density of the printed model.</div>
+                </div>
+                {% if form.infill_percentage.errors %}
+                    <div class="error">{{ form.infill_percentage.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.layer_height.label_tag }}
+                <div class="hint-box-container">
+                    {{ form.layer_height }}
+                    <button type="button" class="hint-button">?</button>
+                    <div class="hint-box">Enter the layer height in millimeters (0.08 to 0.4 mm) which affects the detail and speed of printing.</div>
+                </div>
+                {% if form.layer_height.errors %}
+                    <div class="error">{{ form.layer_height.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="button btn-primary">Submit Model</button>
+                <a href="{% url 'core:home' %}" class="button btn-secondary">Return to Home</a>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.querySelectorAll('.hint-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const hintBox = button.nextElementSibling;
+                hintBox.style.display = hintBox.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.matches('.hint-button')) {
+                document.querySelectorAll('.hint-box').forEach(hintBox => {
+                    hintBox.style.display = 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

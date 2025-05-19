@@ -1,0 +1,33 @@
+<!-- admin_panel/templates/admin_panel/model_list.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submitted Models</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Submitted Models</h1>
+        </header>
+        <ul class="model-list">
+            {% for model in models %}
+                <li class="model-item">
+                    <a href="{% url 'admin_panel:model_detail' pk=model.pk %}" class="model-link">
+                        {{ model.model_name }} ({{ model.user.username }})
+                    </a>
+                    <span class="model-date">{{ model.submitted_at }}</span>
+                </li>
+            {% empty %}
+                <li class="no-models">No models submitted yet.</li>
+            {% endfor %}
+        </ul>
+        <div class="actions">
+            <a href="{% url 'core:home' %}" class="button btn-secondary">Return to Home</a>
+        </div>
+    </div>
+</body>
+</html>

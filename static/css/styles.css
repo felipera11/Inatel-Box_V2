@@ -1,0 +1,289 @@
+/* your_app/static/your_app/css/styles.css */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-left: 100px; /* Add larger left margin */
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #4CAF50;
+    font-size: 3em;
+}
+
+h2 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.1em;
+    color: #666;
+    margin-top: 10px;
+    line-height: 1.4;
+    background: #fff; /* Background color for the box */
+    padding: 15px;    /* Padding inside the box */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border: 1px solid #ddd; /* Optional: Light border */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background: #fff;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+ul li h2 {
+    margin-top: 0;
+}
+
+ul li p {
+    font-size: 1em;
+    color: #666;
+}
+
+ul li ul {
+    margin-top: 10px;
+}
+
+ul li ul li {
+    background: #e8f5e9;
+    padding: 10px;
+    margin: 5px 0;
+    border-left: 4px solid #4CAF50;
+}
+
+ul li ul li:nth-child(even) {
+    background: #f1f8e9;
+}
+
+.instructions {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    border-left: 6px solid #4CAF50;
+}
+
+.instructions p {
+    margin: 0;
+    font-size: 1.1em;
+    color: #444;
+    line-height: 1.6;
+}
+
+/* General Button Styles */
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 16px;
+    color: #fff;
+    background: linear-gradient(135deg, #4CAF50, #2c6f41); /* Gradient background */
+    border: none;
+    border-radius: 8px; /* More rounded corners */
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #45a049, #2b5d34); /* Lighter gradient on hover */
+    transform: translateY(-3px); /* Slight lift effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.button:active {
+    background: linear-gradient(135deg, #397d39, #1e4d28); /* Darker gradient on click */
+    transform: translateY(1px); /* Slight depression effect */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Reduced shadow on click */
+}
+
+/* Primary Button */
+.btn-primary {
+    background: linear-gradient(135deg, #4CAF50, #2c6f41); /* Gradient background */
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #45a049, #2b5d34); /* Lighter gradient on hover */
+}
+
+.btn-primary:active {
+    background: linear-gradient(135deg, #397d39, #1e4d28); /* Darker gradient on click */
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d, #4e555b); /* Gradient background */
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #5a6268, #3f4a4d); /* Lighter gradient on hover */
+}
+
+.btn-secondary:active {
+    background: linear-gradient(135deg, #4e555b, #2c2f2f); /* Darker gradient on click */
+}
+
+/* Order List Styles */
+.order-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.order-item {
+    background: #fff;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-link {
+    font-size: 1.2em;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.order-link:hover {
+    text-decoration: underline;
+}
+
+.order-date {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.order-status {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.order-status.completed {
+    color: #4CAF50;
+}
+
+.order-status.pending {
+    color: #FF9800;
+}
+
+.no-orders {
+    text-align: center;
+    font-size: 1.1em;
+    color: #666;
+    padding: 20px;
+}
+
+/* Model Details Styles */
+.model-details {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.model-details p {
+    font-size: 1.1em;
+    color: #444;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.model-details strong {
+    color: #333;
+}
+
+/* Link Button Styles */
+.btn-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+.btn-link:visited {
+    color: #0056b3;
+}
+
+/* Form Container Styles */
+.form-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #333;
+    background-color: #f9f9f9; /* Light background for inputs */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for focus state */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #4CAF50; /* Highlight border color on focus */
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2); /* Subtle shadow effect on focus */
+    outline: none; /* Remove default focus outline */
+}
+
+/* File Input Styles */
+.form-group input[type="file"] {
+    padding: 0;
+    background-color: #fff; /* Ensure consistent background color for file input */
+}
+
+/* Form Actions Styles */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}

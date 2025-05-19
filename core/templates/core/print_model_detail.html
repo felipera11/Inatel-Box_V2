@@ -1,0 +1,28 @@
+<!-- core/templates/core/print_model_detail.html-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Details</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Model Details</h1>
+        <div class="model-details">
+            <p><strong>Model Name:</strong> {{ print_model.model_name }}</p>
+            <p><strong>Submitted By:</strong> {{ print_model.user.username }}</p>
+            <p><strong>Material:</strong> {{ print_model.material }}</p>
+            <p><strong>Infill Percentage:</strong> {{ print_model.infill_percentage }}%</p>
+            <p><strong>Layer Height:</strong> {{ print_model.layer_height }} mm</p>
+            <p><strong>Submitted At:</strong> {{ print_model.submitted_at }}</p>
+            <p><strong>Completed:</strong> {{ print_model.is_completed }}</p>
+            <p><strong>Budget:</strong> {{ print_model.budget }}</p>
+            <p><strong>STL File:</strong> <a href="{{ print_model.stl_file.url }}" class="button btn-link" target="_blank">Download</a></p>
+        </div>
+        <a href="{% url 'core:home' %}" class="button btn-primary">Return to Home</a>
+    </div>
+</body>
+</html>

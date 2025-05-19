@@ -1,0 +1,22 @@
+<!-- profiles/templates/profiles/profile_edit.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Profile</h1>
+        <form method="post" class="form-container">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-actions">
+                <button type="submit" class="button btn-primary">Save Changes</button>
+                <a href="{% url 'profile' %}" class="button btn-secondary">Back to Profile</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

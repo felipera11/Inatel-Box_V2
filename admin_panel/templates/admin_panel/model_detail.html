@@ -1,0 +1,33 @@
+<!-- admin_panel/templates/admin_panel/model_detail.html-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Details</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Model Details: {{ print_model.model_name }}</h1>
+        <div class="model-details">
+            <p><strong>Material:</strong> {{ print_model.material }}</p>
+            <p><strong>Infill:</strong> {{ print_model.infill_percentage }}%</p>
+            <p><strong>Layer Height:</strong> {{ print_model.layer_height }} mm</p>
+            <p><strong>Submitted by:</strong> {{ print_model.user.username }}</p>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="button btn-primary">Calculate Budget</button>
+        </form>
+
+        <div class="budget-info">
+            <p><strong>Current Budget:</strong> {{ print_model.budget }}</p>
+        </div>
+        
+        <a href="{% url 'admin_panel:model_list' %}" class="button btn-secondary">Back to List</a>
+    </div>
+</body>
+</html>

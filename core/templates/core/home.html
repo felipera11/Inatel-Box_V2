@@ -1,0 +1,27 @@
+<!-- core/templates/core/home.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to FabTrack</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to FabTrack</h1>
+        <div class="home-actions">
+            <a href="{% url 'core:send_model' %}" class="button btn-primary">Send a New Model</a>
+            <a href="{% url 'core:history' %}" class="button btn-secondary">View Order History</a>
+            <a href="{% url 'profile' %}" class="button btn-tertiary">View Profile</a>
+            <!-- Conditionally render the button for staff users -->
+            {% if request.user.is_staff %}
+                <a href="{% url 'admin_panel:model_list' %}" class="button btn-admin">View Submitted Models</a>
+            {% endif %}
+            <!-- Logout button -->
+            <a href="{% url 'logout' %}" class="button btn-danger">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

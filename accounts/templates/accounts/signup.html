@@ -1,0 +1,117 @@
+<!-- accounts/templates/accounts/signup.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        .hint-box-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hint-button {
+            font-size: 1.1em;
+            color: #4CAF50;
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .hint-box {
+            display: none;
+            position: absolute;
+            background: #fff;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            z-index: 10;
+            top: 100%;
+            left: 0;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+
+        .hint-box::after {
+            content: '';
+            position: absolute;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #fff transparent transparent transparent;
+            top: -10px;
+            left: 10px;
+        }
+
+        .hint-box-container:hover .hint-box {
+            display: block;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Signup</h1>
+        <form method="post" class="form-container">
+            {% csrf_token %}
+            <!-- Loop through the form fields -->
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    <div class="hint-box-container">
+                        {{ field }}
+                        {% if field.help_text %}
+                            <button type="button" class="hint-button">?</button>
+                            <div class="hint-box">{{ field.help_text }}</div>
+                        {% endif %}
+                    </div>
+                    {% if field.errors %}
+                        <div class="error">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <div class="form-actions">
+                <button type="submit" class="button btn-primary">Signup</button>
+                <a href="{% url 'core:home' %}" class="button btn-secondary">Return to Home</a>
+            </div>
+        </form>
+
+        <!-- Display messages if they exist -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <script>
+        document.querySelectorAll('.hint-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const hintBox = button.nextElementSibling;
+                hintBox.style.display = hintBox.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.matches('.hint-button')) {
+                document.querySelectorAll('.hint-box').forEach(hintBox => {
+                    hintBox.style.display = 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
