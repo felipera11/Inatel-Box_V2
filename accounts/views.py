@@ -11,6 +11,8 @@ def signup_view(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.matricula = form.cleaned_data.get('matricula')
+            user.username = str(user.matricula) 
+            user.nome = form.cleaned_data.get('nome')
             user.email = form.cleaned_data.get('email')  # Save the email
             user.is_staff = form.cleaned_data.get('is_staff')  # Set staff status based on the checkbox
             user.save()

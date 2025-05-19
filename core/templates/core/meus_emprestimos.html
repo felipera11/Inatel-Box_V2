@@ -1,0 +1,16 @@
+{% extends 'core/home.html' %}
+
+{% block content %}
+<h2>Meus Empréstimos</h2>
+
+{% if emprestimos %}
+  <ul>
+    {% for item in emprestimos %}
+      <li>{{ item.produto.nome }}: {{ item.quantidade }} {{ item.unidade }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Você não possui produtos emprestados no momento.</p>
+{% endif %}
+
+{% endblock %}
