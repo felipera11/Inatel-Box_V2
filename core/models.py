@@ -1,17 +1,39 @@
-# core/models.py
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
-class PrintModel(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    model_name = models.CharField(max_length=255)
-    stl_file = models.FileField(upload_to='stl_files/')
-    material = models.CharField(max_length=100)
-    infill_percentage = models.IntegerField()
-    layer_height = models.DecimalField(max_digits=5, decimal_places=2)  # Ensure this fits SQL Server precision rules
-    submitted_at = models.DateTimeField(auto_now_add=True)
-    is_completed = models.BooleanField(default=False)
-    budget = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+User = get_user_model()
+
+class Categoria(models.Model):
+    nome = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.model_name} - {self.user.username}"
+        return self.nome
+
+class Produto(models.Model):
+    nome = models.CharField(max_length=100)
+    descricao = models.TextField(blank=True)
+    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
+    quantidade = models.PositiveIntegerField(default=0)
+    unidade = models.CharField(max_length=20, default="un")  # ex: un, kg, m
+
+    def __str__(self):
+        return f"{self.nome} ({self.quantidade} {self.unidade})"
+
+class RegistroMovimentacao(models.Model):
+    ENTRADA = 'entrada'
+    SAIDA = 'saida'
+
+    TIPO_CHOICES = [
+        (ENTRADA, 'Entrada'),
+        (SAIDA, 'Saída'),
+    ]
+
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    tipo = models.CharField(max_length=10, choices=TIPO_CHOICES)
+    quantidade = models.PositiveIntegerField()
+    responsavel = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    data = models.DateTimeField(auto_now_add=True)
+    observacao = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.tipo.title()} - {self.produto.nome} ({self.quantidade})"

@@ -1,0 +1,14 @@
+{% extends 'core/home.html' %}
+
+{% block content %}
+<h2>Produtos</h2>
+<a href="{% url 'core:adicionar_produto' %}">Adicionar Produto</a> |
+<a href="{% url 'core:movimentar_produto' %}">Registrar Entrada/Saída</a>
+<ul>
+  {% for produto in produtos %}
+    <li>{{ produto.nome }}: {{ produto.quantidade }} {{ produto.unidade }}</li>
+  {% empty %}
+    <li>Nenhum produto cadastrado.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -6,7 +6,7 @@ app_name = 'core'
 
 urlpatterns = [
     path('', views.home, name='home'),  # Ensure this line exists and is named 'home'
-    path('send_model/', views.send_model, name='send_model'),
-    path('history/', views.history, name='history'),
-    path('model/<int:pk>/', views.print_model_detail, name='print_model_detail'),
+    path('produtos/', views.listar_produtos, name='listar_produtos'),
+    path('adicionar/', views.adicionar_produto, name='adicionar_produto'),
+    path('movimentar/', views.movimentar_produto, name='movimentar_produto'),
 ]

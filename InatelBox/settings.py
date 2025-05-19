@@ -122,3 +122,5 @@ LOGOUT_REDIRECT_URL = 'login'
 
 # URL for the login page
 LOGIN_URL = 'login'
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
